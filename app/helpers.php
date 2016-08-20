@@ -8,13 +8,15 @@ function assets($path)
 
 function dbData($param)
 {
-    $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+    if (env("CLEARDB_DATABASE_URL", false)) {
+    	$url = parse_url(env("CLEARDB_DATABASE_URL"));
 
-   
-    
-    if ($param === 'db') {
-            return substr($url["path"], 1);
+	    if ($param === 'db') {
+	        return substr($url["path"], 1);
+	    }
+
+	    return $url[$param];//host || user || pass
     }
-
-    return $url[$param];//host || user || pass
+ 	
+ 	return '';   
 }
