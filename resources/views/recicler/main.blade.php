@@ -4,8 +4,8 @@
 	<meta charset="UTF-8">
 	<title>@yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link type="text/css" rel="stylesheet" href="{{asset('vendors/materialize/css/materialize.min.css')}}"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="{{asset('css/regular.css')}}"/>
+    <link type="text/css" rel="stylesheet" href="{{assets('vendors/materialize/css/materialize.min.css')}}"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{{assets('css/regular.css')}}"/>
 
 </head>
 <body>
@@ -38,8 +38,8 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" src="{{asset('vendors/jquery/jquery.min.js')}}"></script>
-      <script type="text/javascript" src="{{asset('vendors/materialize/js/materialize.min.js')}}"></script>
+	<script type="text/javascript" src="{{assets('vendors/jquery/jquery.min.js')}}"></script>
+      <script type="text/javascript" src="{{assets('vendors/materialize/js/materialize.min.js')}}"></script>
     @yield('script')
 </body>
 </html>
