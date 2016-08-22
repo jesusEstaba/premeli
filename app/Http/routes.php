@@ -29,5 +29,7 @@ Route::group(['prefix'=>'register'], function () {
 
 Route::group(['middleware'=>'auth'], function () {
     Route::get('home', 'HomeCtrl@index');
-    Route::get('add-product', 'HomeCtrl@addProduct');
+    Route::get('add-product', 'HomeCtrl@viewAdd');
+    Route::get('add-product/ref/{id}', 'HomeCtrl@viewRefProc');
+    Route::post('add-product/save', 'HomeCtrl@saveProduct');
 });
