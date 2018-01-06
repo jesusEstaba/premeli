@@ -16,7 +16,7 @@ class CreateReferencesTable extends Migration
             $table->increments('id');
             $table->bigInteger('product');
             $table->bigInteger('numProcRef');
-            $table->float('price');
+            $table->double('price');
             $table->timestamps();
         });
     }
