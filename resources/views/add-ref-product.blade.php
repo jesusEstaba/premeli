@@ -1,19 +1,18 @@
 @extends('recicler.main')
 @section('title', 'Agregar Referencia')
 @section('content')
-	<h2>Agregar Referencia</h2>
 	<div class="list">
 		<div class="product" id="{{$product->id}}">
-			<p>{{$product->id}}</p>
 			<h4>{{$product->title}}</h4>
-			<h5 class="green-text">Bs {{$product->price}}</h5>
+			<h5 class="green-text">Bs {{number_format($product->price, 2)}}</h5>
 		</div>
 	</div>
-		<input type="text" placeholder="URL del producto" name="refer"/><a class="btn green add-ref">Agregar</a>
-	<ul class="ref-list">
-		
-	</ul>
-	<a class="btn yellow darken-2 save waves-effect black-text">Guardar</a>
+	<br>
+	<h5>Referencias:</h5>
+	<input type="text" placeholder="URL del producto" name="refer"/>
+	<ul class="ref-list"></ul>
+	<a class="btn green add-ref"><i class="fa fa-plus"></i> Agregar</a>
+	<a class="btn blue darken-2 save waves-effect"><i class="fa fa-floppy-o"></i> Guardar</a>
 @stop
 
 @section('script')
