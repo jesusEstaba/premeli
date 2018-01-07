@@ -2,7 +2,7 @@
 
 function assets($path)
 {
-    $secure = (env('APP_ENV')=='production') ? true : false;
+    $secure = env('APP_ENV')=='production' || env('APP_SECURE')==true;
     return app('url')->asset($path, $secure);
 }
 
