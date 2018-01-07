@@ -9,7 +9,7 @@
 			<h5 class="green-text">Bs {{$product->price}}</h5>
 		</div>
 	</div>
-		<input type="text" placeholder="Id Producto" name="refer"/><a class="btn green add-ref">Agregar</a>
+		<input type="text" placeholder="URL del producto" name="refer"/><a class="btn green add-ref">Agregar</a>
 	<ul class="ref-list">
 		
 	</ul>
@@ -20,12 +20,26 @@
 <script type="text/javascript">
 	$(function(){
 		$('.add-ref').on('click', function() {
-			if ($('[name=refer]').val().trim()) {
+			let url = $('[name=refer]').val().trim();
+			
+			if (url) {
 				var len = $('.ref-list li').length;
 				
 				if (len<5) {
-					$('.ref-list').append('<li>'+ $('[name=refer]').val() +'</li>');
-					$('[name=refer]').val('');
+					
+					let itemCode = url.match(/ML\w-\d+/)[0].split("").filter(c => c!="-").join("")
+					
+					$.get(`https://api.mercadolibre.com/items/${itemCode}`, function(item) {
+						console.log(item)
+						$('.ref-list').append(`
+							<li data-item="${itemCode}">
+								<i class="fa fa-remove remove"></i>
+								${item.title}
+							</li>
+						`);
+						$('[name=refer]').val('');
+					})
+					
 				} else {
 					Materialize.toast('Maximo 5 referencias', 3000);
 				}
@@ -33,6 +47,10 @@
 				Materialize.toast('No Puede estar vacia la referencia', 3000);
 			}
 		});
+		
+		$('.ref-list').on('click', '.remove', function(){
+			$(this).parent().remove();
+		})
 
 		$('.save').on('click', function() {
 			var len = $('.ref-list li').length;
@@ -42,7 +60,7 @@
 				refers = [];
 
 				$('.ref-list li').each(function(ind, ele){
-					refers.push('MLV' + $(ele).html());
+					refers.push($(ele).attr('data-item'));
 				});
 
 				$.post('/add-product/save', 
