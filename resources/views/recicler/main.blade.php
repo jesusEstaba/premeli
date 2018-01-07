@@ -35,7 +35,7 @@
 				</div>
 				<div class="col s6">
 					@if(Auth::check())
-						<a href="/logout" class="blue-text pull-right">logout</a>
+						<a href="/logout" class="blue-text pull-right">Cerrar sesión</a>
 					@endif
 					
 				</div>
